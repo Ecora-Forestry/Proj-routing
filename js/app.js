@@ -183,16 +183,17 @@ $.getJSON('https://raw.githubusercontent.com/Ecora-Forestry/Proj-routing/new-tes
 
 // add geojson compartment centre points layer to map
 $.getJSON('https://raw.githubusercontent.com/Ecora-Forestry/Proj-routing/new-test/GTFP_Cpt_CentrePts.geojson', function(data){
-  L.geoJSON(data).addTo(map);//,{
-    // pointToLayer: function(feature, latlng) {
-    //   var myIcon = L.icon({
-    //     iconUrl: 'my-icon.png',
-    //     iconSize: [20,20]
-     // });
-
-      //return L.marker(latlng, {icon: myIcon});
-    //}
-  //}).addTo(map);
+  L.geoJSON(data, {
+    pointToLayer: function(feature, latlng) {
+      var cptIcon = L.AwesomeMarkers.icon({
+        icon: 'circle-xmark',
+        markerColor: 'red',
+        iconColor: 'green',
+        prefix: 'fa'
+      });
+      return L.marker(latlng, {icon: cptIcon});
+    }
+  }).addTo(map);
 })
 
 // polyline measure functionality
