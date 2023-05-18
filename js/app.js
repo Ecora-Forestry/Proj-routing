@@ -4,11 +4,31 @@ var map = L.map('map', {
     zoom:13 //set the zoom level
 });
 
-//add openstreet baselayer to the map 
-var OpenStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+// //add openstreet baselayer to the map 
+// var OpenStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//   maxZoom: 19,
+//   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+// }).addTo(map);
+
+//Google Streets Layer
+var googleStreets = L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+maxZoom: 20,
+subdomains:['mt0','mt1','mt2','mt3']
 }).addTo(map);
+
+//Google Satellite Layer
+var googleSat = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+maxZoom: 20,
+subdomains:['mt0','mt1','mt2','mt3']
+});
+
+//Layer Controller
+var baseMaps = {
+  "Google Streets": googleStreets,
+  "Google Satellite": googleSat
+};
+
+L.control.layers(baseMaps).addTo(map);
 
 //*Custom Application*//
 
