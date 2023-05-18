@@ -4,17 +4,17 @@ var map = L.map('map', {
     zoom:13 //set the zoom level
 });
 
-// //add openstreet baselayer to the map 
-// var OpenStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//   maxZoom: 19,
-//   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-// }).addTo(map);
+//add openstreet baselayer to the map 
+var OpenStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
 
 //Google Streets Layer
 var googleStreets = L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
 maxZoom: 20,
 subdomains:['mt0','mt1','mt2','mt3']
-}).addTo(map);
+});
 
 //Google Satellite Layer
 var googleSat = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
@@ -25,7 +25,8 @@ subdomains:['mt0','mt1','mt2','mt3']
 //Layer Controller
 var baseMaps = {
   "Google Streets": googleStreets,
-  "Google Satellite": googleSat
+  "Google Satellite": googleSat,
+  "OpenStreetMap": OpenStreetMap
 };
 
 L.control.layers(baseMaps).addTo(map);
@@ -179,3 +180,22 @@ $.getJSON('../THR_2021.geojson', function(data){
     }
   }).addTo(map);
 })
+
+// polyline measure functionality
+var measure = L.control.polylineMeasure({
+  position: 'bottomleft',
+  unit: 'kilometres',
+  useSubunits: true,
+  clearMeasurementsOnStop: true,
+  showBearings: true,
+  bearingTextIn: 'In',
+  bearingTextOut: 'Out',
+  tooltipTextFinish: 'Click to <b>Finish Line</b><br>',
+  tooltipTextDelete: 'Press SHIFT-key and click to <b>Delete Point</b>',
+  tooltipTextMove: 'Click and drag to <b>Move Point</b><br>',
+  tooltipTextResume: '<br>Press CTRL-key and click to <b>Resume Line</b>',
+  tooltipTextAdd: 'Press CTRL-key and click to <b>add point</b>',
+  showClearControl: true,
+  showUnitControl: true,
+  unitControlUnits: ["kilometres", "landmiles"],
+}).addTo(map);
