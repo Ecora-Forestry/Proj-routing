@@ -126,7 +126,7 @@ getRoute();
 
 //Facilities Markers
 var myIcon = L.icon({
-  iconUrl: '../Facilities.png',
+  iconUrl: 'Facilities.png',
   iconSize: [20,20],
   iconAnchor: [15,15],
   popupAnchor: [0,-15]
@@ -170,7 +170,7 @@ for (var i=0; i < markers.length; i++){
 } 
 
 // add geojson haulage route layer to map
-$.getJSON('../THR_2021.geojson', function(data){
+$.getJSON('https://raw.githubusercontent.com/Ecora-Forestry/Proj-routing/new-test/THR_2021.geojson', function(data){
   L.geoJSON(data,{
     style: function(feature) {
       return{
@@ -182,7 +182,7 @@ $.getJSON('../THR_2021.geojson', function(data){
 })
 
 // add geojson compartment centre points layer to map
-$.getJSON('../GTFP_Cpt_CentrePts.geojson', function(data){
+$.getJSON('https://raw.githubusercontent.com/Ecora-Forestry/Proj-routing/new-test/GTFP_Cpt_CentrePts.geojson', function(data){
   L.geoJSON(data).addTo(map);//,{
     // pointToLayer: function(feature, latlng) {
     //   var myIcon = L.icon({
