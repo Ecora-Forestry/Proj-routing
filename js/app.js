@@ -192,6 +192,12 @@ $.getJSON('https://raw.githubusercontent.com/Ecora-Forestry/Proj-routing/new-tes
         prefix: 'fa'
       });
       return L.marker(latlng, {icon: cptIcon});
+    },
+    onEachFeature: function(feature, layer) {
+      // Check if feature has a property named 'name'
+      if (feature.properties && feature.properties.CPT) {
+        layer.bindPopup(feature.properties.CPT);
+      }
     }
   }).addTo(map);
 })
