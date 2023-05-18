@@ -181,6 +181,20 @@ $.getJSON('../THR_2021.geojson', function(data){
   }).addTo(map);
 })
 
+// add geojson compartment centre points layer to map
+$.getJSON('../GTFP_Cpt_CentrePts.geojson', function(data){
+  L.geoJSON(data).addTo(map);//,{
+    // pointToLayer: function(feature, latlng) {
+    //   var myIcon = L.icon({
+    //     iconUrl: 'my-icon.png',
+    //     iconSize: [20,20]
+     // });
+
+      //return L.marker(latlng, {icon: myIcon});
+    //}
+  //}).addTo(map);
+})
+
 // polyline measure functionality
 var measure = L.control.polylineMeasure({
   position: 'bottomleft',
