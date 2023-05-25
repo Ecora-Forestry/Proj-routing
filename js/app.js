@@ -34,8 +34,8 @@ L.control.layers(baseMaps).addTo(map);
 //Leaflet Routing Control
 L.Routing.control({
   waypoints: [
-      L.latLng(-37.8284, 140.7712),
-      L.latLng(-37.8280, 140.7650)
+      L.latLng(-37.81783, 140.76501),
+      L.latLng(-37.82336, 140.78334)
   ],
   routeWhileDragging: true
 }).addTo(map);
