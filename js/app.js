@@ -184,7 +184,8 @@ $.getJSON('https://raw.githubusercontent.com/Ecora-Forestry/Proj-routing/new-tes
     style: function(feature) {
       return{
         color: 'black',
-        fillColor: 'black'
+        fillColor: 'black',
+        weight: 5
       };
     }
   }).addTo(map);
@@ -196,8 +197,8 @@ $.getJSON('https://raw.githubusercontent.com/Ecora-Forestry/Proj-routing/new-tes
     pointToLayer: function(feature, latlng) {
       var cptIcon = L.AwesomeMarkers.icon({
         icon: 'circle',
-        markerColor: 'red',
-        iconColor: 'green',
+        markerColor: 'green',
+        iconColor: 'white',
         prefix: 'fa'
       });
       return L.marker(latlng, {icon: cptIcon});
@@ -205,7 +206,7 @@ $.getJSON('https://raw.githubusercontent.com/Ecora-Forestry/Proj-routing/new-tes
     onEachFeature: function(feature, layer) {
       // Check if feature has a property named 'name'
       if (feature.properties && feature.properties.REG_CPT) {
-        layer.bindPopup(feature.properties.REG_CPT);
+        layer.bindPopup('CPT: ' + feature.properties.REG_CPT);
       }
     }
   }).addTo(map);
