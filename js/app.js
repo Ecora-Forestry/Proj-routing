@@ -31,98 +31,107 @@ var baseMaps = {
 
 L.control.layers(baseMaps).addTo(map);
 
-//*Custom Application*//
+//Leaflet Routing Control
+L.Routing.control({
+  waypoints: [
+      L.latLng(-37.8284, 140.7712),
+      L.latLng(-37.8280, 140.7650)
+  ],
+  routeWhileDragging: true
+}).addTo(map);
 
-//geoserver 
-var geoserverURL = "http://localhost:8080/geoserver"
-//selected point
-var selectedPoint = null
-//geojson pathlayer
-var routeLayer = L.geoJSON(null);
-//source and target variables for routing
-var source = null;
-var target = null;
+// //*Custom Application*//
 
-//starting source marker
-var sourceMarker = L.marker([-37.8284, 140.7712],{
-  draggable:true
-})
-  .on("dragend",function(e) {
-    selectedPoint = e.target.getLatLng();
-    getVertex(selectedPoint);
-    getRoute();  
-  })
-  .addTo(map);
+// //geoserver 
+// var geoserverURL = "http://localhost:8080/geoserver"
+// //selected point
+// var selectedPoint = null
+// //geojson pathlayer
+// var routeLayer = L.geoJSON(null);
+// //source and target variables for routing
+// var source = null;
+// var target = null;
 
-var targetMarker = L.marker([-37.8280, 140.7705],{
-  draggable:true
-})
-  .on("dragend",function(e) {
-    selectedPoint = e.target.getLatLng();
-    getVertex(selectedPoint);
-    getRoute();
-  })
-  .addTo(map);
+// //starting source marker
+// var sourceMarker = L.marker([-37.8284, 140.7712],{
+//   draggable:true
+// })
+//   .on("dragend",function(e) {
+//     selectedPoint = e.target.getLatLng();
+//     getVertex(selectedPoint);
+//     getRoute();  
+//   })
+//   .addTo(map);
 
-//function to call geoserver SQL
-function getVertex(selectedPoint){
-  var url = `${geoserverURL}/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=routing:nearest_vertex&outputFormat=application/json&viewparams=x:${selectedPoint.lng};y:${selectedPoint.lat};`;
-  $.ajax({
-    url: url,
-    async: false,
-    success: function(data){
-      console.log(data);
-      loadVertex(
-        data,
-        selectedPoint.toString() === sourceMarker.getLatLng().toString()
-      );
-    }
-  });
-}
+// var targetMarker = L.marker([-37.8280, 140.7705],{
+//   draggable:true
+// })
+//   .on("dragend",function(e) {
+//     selectedPoint = e.target.getLatLng();
+//     getVertex(selectedPoint);
+//     getRoute();
+//   })
+//   .addTo(map);
 
-function loadVertex(response, isSource){
-  var features = response.features;
-  map.removeLayer(routeLayer);
-  if(isSource){
-    source = features[0].properties.id;
-  }else{
-    target = features[0].properties.id;
-  }
+// //function to call geoserver SQL
+// function getVertex(selectedPoint){
+//   var url = `${geoserverURL}/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=routing:nearest_vertex&outputFormat=application/json&viewparams=x:${selectedPoint.lng};y:${selectedPoint.lat};`;
+//   $.ajax({
+//     url: url,
+//     async: false,
+//     success: function(data){
+//       console.log(data);
+//       loadVertex(
+//         data,
+//         selectedPoint.toString() === sourceMarker.getLatLng().toString()
+//       );
+//     }
+//   });
+// }
 
-}
+// function loadVertex(response, isSource){
+//   var features = response.features;
+//   map.removeLayer(routeLayer);
+//   if(isSource){
+//     source = features[0].properties.id;
+//   }else{
+//     target = features[0].properties.id;
+//   }
 
-function getRoute(){
-  var url = `${geoserverURL}/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=routing:shortest_path&outputFormat=application/json&viewparams=source:${source};target:${target};`;
+// }
 
-  $.getJSON(url, function(data){
-    if (map.hasLayer(routeLayer)){ // check if layer exists on map
-      map.removeLayer(routeLayer); // remove existing layer
-    }
-    var totalDistance = 0;
-    data.features.forEach(function(feature){
-      totalDistance += feature.properties.distance;
-    });
-    totalDistance = totalDistance.toFixed(2);
-    console.log("Total Distance: ", totalDistance);
+// function getRoute(){
+//   var url = `${geoserverURL}/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=routing:shortest_path&outputFormat=application/json&viewparams=source:${source};target:${target};`;
 
-    routeLayer = L.geoJSON(data, {
-      style: function(){
-        return{color: 'red', weight: 3};
-      },
-      onEachFeature: function(feature, layer){
-        if(feature.properties && feature.properties.distance){
-          layer.bindPopup('Segment Distance: ' + feature.properties.distance);
-        }
-      }
-    }).bindPopup("Total Distance: " + totalDistance +"km");// assign new layer to routeLayer variable
-    map.addLayer(routeLayer);
-  })
-}
+//   $.getJSON(url, function(data){
+//     if (map.hasLayer(routeLayer)){ // check if layer exists on map
+//       map.removeLayer(routeLayer); // remove existing layer
+//     }
+//     var totalDistance = 0;
+//     data.features.forEach(function(feature){
+//       totalDistance += feature.properties.distance;
+//     });
+//     totalDistance = totalDistance.toFixed(2);
+//     console.log("Total Distance: ", totalDistance);
+
+//     routeLayer = L.geoJSON(data, {
+//       style: function(){
+//         return{color: 'red', weight: 3};
+//       },
+//       onEachFeature: function(feature, layer){
+//         if(feature.properties && feature.properties.distance){
+//           layer.bindPopup('Segment Distance: ' + feature.properties.distance);
+//         }
+//       }
+//     }).bindPopup("Total Distance: " + totalDistance +"km");// assign new layer to routeLayer variable
+//     map.addLayer(routeLayer);
+//   })
+// }
 
 
-getVertex(sourceMarker.getLatLng());
-getVertex(targetMarker.getLatLng());
-getRoute();
+// getVertex(sourceMarker.getLatLng());
+// getVertex(targetMarker.getLatLng());
+// getRoute();
 
 //Facilities Markers
 var myIcon = L.icon({
