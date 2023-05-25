@@ -170,7 +170,7 @@ var markers = [
   {coords: [-37.8052, 140.7738], content: "NF McDonnell"},
   {coords: [-38.31200, 143.65005], content: "AKD Irrawarra"},
   {coords: [-38.35653, 141.60905], content: "C3"},
-  {coords: [-37.88693, 140.83735], content: "Roundwood Solutions"},
+  {coords: [-37.856286, 140.837906], content: "Roundwood Solutions"},
 ];
 
 // iterate through marker array and add markers to map
@@ -195,7 +195,7 @@ $.getJSON('https://raw.githubusercontent.com/Ecora-Forestry/Proj-routing/new-tes
   L.geoJSON(data, {
     pointToLayer: function(feature, latlng) {
       var cptIcon = L.AwesomeMarkers.icon({
-        icon: 'circle-xmark',
+        icon: 'circle',
         markerColor: 'red',
         iconColor: 'green',
         prefix: 'fa'
