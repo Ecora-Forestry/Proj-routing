@@ -142,7 +142,7 @@ var myIcon = L.icon({
 });
 
 var markers = [
-  {coords: [-37.8166, 140.7469], content: "Borgs Lakeside"},
+  {coords: [-37.815489, 140.747147], content: "Borgs Lakeside"},
   {coords: [-37.8249, 140.7610], content: "Borgs White Ave"},
   {coords: [-37.8441, 140.8058], content: "WTS"},
   {coords: [-37.7533, 140.6608], content: "SE Pine Sales"},
@@ -163,7 +163,7 @@ var markers = [
   {coords: [-37.61121, 140.79756], content: "Timberlink"},
   {coords: [-38.33868, 143.61050], content: "AKD Colac"},
   {coords: [-38.32313, 141.58229], content: "PFP Gate"},
-  {coords: [-37.8166, 140.7469], content: "A2C"},
+  {coords: [-38.322439, 141.588661], content: "A2C"},
   {coords: [-38.34998, 141.61492], content: "Portland Wharf"},
   {coords: [-38.110586, 141.620118], content: "Portland Pine Products"},
   {coords: [-37.8414, 140.8048], content: "OFO Jubilee"},
