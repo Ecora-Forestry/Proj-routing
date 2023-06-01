@@ -205,7 +205,7 @@ $.getJSON('https://raw.githubusercontent.com/Ecora-Forestry/Proj-routing/new-tes
     onEachFeature: function(feature, layer) {
       // Check if feature has a property named 'name'
       if (feature.properties && feature.properties.Name) {
-        layer.bindPopup('CPT: ' + feature.properties.Name);
+        layer.bindPopup(feature.properties.Name);
       }
     }
   }).addTo(map);
@@ -224,7 +224,7 @@ $.getJSON('https://raw.githubusercontent.com/Ecora-Forestry/Proj-routing/new-tes
       return L.marker(latlng, {icon: cptIcon});
     },
     onEachFeature: function(feature, layer) {
-      // Check if feature has a property named 'name'
+      // Check if feature has a property named 'REG_CPT'
       if (feature.properties && feature.properties.REG_CPT) {
         layer.bindPopup('CPT: ' + feature.properties.REG_CPT);
       }
