@@ -134,49 +134,49 @@ L.Routing.control({
 // getRoute();
 
 //Facilities Markers
-var myIcon = L.icon({
-  iconUrl: 'Facilities.png',
-  iconSize: [20,20],
-  iconAnchor: [15,15],
-  popupAnchor: [0,-15]
-});
+// var myIcon = L.icon({
+//   iconUrl: 'Facilities.png',
+//   iconSize: [20,20],
+//   iconAnchor: [10,10],
+//   popupAnchor: [0,-15]
+// });
 
-var markers = [
-  {coords: [-37.815489, 140.747147], content: "Borgs Lakeside"},
-  {coords: [-37.8249, 140.7610], content: "Borgs White Ave"},
-  {coords: [-37.8441, 140.8058], content: "WTS"},
-  {coords: [-37.7533, 140.6608], content: "SE Pine Sales"},
-  {coords: [-38.32203, 141.58102], content: "PFP PNR Log Dump"},
-  {coords: [-38.35257, 141.61324], content: "ABP"},
-  {coords: [-37.8134, 140.6451], content: "New Gen"},
-  {coords: [-37.909525, 141.273250], content: "Alliance Timber"},
-  {coords: [-37.8166, 140.7469], content: "PFP PNR Weighbridge"},
-  {coords: [-38.31646, 141.57864], content: "PFP Darts Rd Weighbridge"},
-  {coords: [-38.31558, 141.57942], content: "Darts Rd Gate"},
-  {coords: [-38.35181, 141.61682], content: "Wharf Weighbridge"},
-  {coords: [-38.31621, 141.57904], content: "PFP Darts Rd Log Dump"},
-  {coords: [-38.323993, 141.581702], content: "PFP PNR Scaling"},
-  {coords: [-38.35554, 141.61149], content: "Canal Court"},
-  {coords: [-38.31796, 141.57913], content: "PFP Darts Rd Scaling"},
-  {coords: [-38.40465, 141.62573], content: "PoPL Quarry"},
-  {coords: [-37.53948, 140.70442], content: "PTT"},
-  {coords: [-37.61121, 140.79756], content: "Timberlink"},
-  {coords: [-38.33868, 143.61050], content: "AKD Colac"},
-  {coords: [-38.32313, 141.58229], content: "PFP Gate"},
-  {coords: [-38.322439, 141.588661], content: "A2C"},
-  {coords: [-38.34998, 141.61492], content: "Portland Wharf"},
-  {coords: [-38.110586, 141.620118], content: "Portland Pine Products"},
-  {coords: [-37.8414, 140.8048], content: "OFO Jubilee"},
-  {coords: [-37.8052, 140.7738], content: "NF McDonnell"},
-  {coords: [-38.31200, 143.65005], content: "AKD Irrawarra"},
-  {coords: [-38.35653, 141.60905], content: "C3"},
-  {coords: [-37.856286, 140.837906], content: "Roundwood Solutions"},
-];
+// var markers = [
+//   {coords: [-37.815489, 140.747147], content: "Borgs Lakeside"},
+//   {coords: [-37.8249, 140.7610], content: "Borgs White Ave"},
+//   {coords: [-37.8441, 140.8058], content: "WTS"},
+//   {coords: [-37.7533, 140.6608], content: "SE Pine Sales"},
+//   {coords: [-38.32203, 141.58102], content: "PFP PNR Log Dump"},
+//   {coords: [-38.35257, 141.61324], content: "ABP"},
+//   {coords: [-37.8134, 140.6451], content: "New Gen"},
+//   {coords: [-37.909525, 141.273250], content: "Alliance Timber"},
+//   {coords: [-37.8166, 140.7469], content: "PFP PNR Weighbridge"},
+//   {coords: [-38.31646, 141.57864], content: "PFP Darts Rd Weighbridge"},
+//   {coords: [-38.31558, 141.57942], content: "Darts Rd Gate"},
+//   {coords: [-38.35181, 141.61682], content: "Wharf Weighbridge"},
+//   {coords: [-38.31621, 141.57904], content: "PFP Darts Rd Log Dump"},
+//   {coords: [-38.323993, 141.581702], content: "PFP PNR Scaling"},
+//   {coords: [-38.35554, 141.61149], content: "Canal Court"},
+//   {coords: [-38.31796, 141.57913], content: "PFP Darts Rd Scaling"},
+//   {coords: [-38.40465, 141.62573], content: "PoPL Quarry"},
+//   {coords: [-37.53948, 140.70442], content: "PTT"},
+//   {coords: [-37.61121, 140.79756], content: "Timberlink"},
+//   {coords: [-38.33868, 143.61050], content: "AKD Colac"},
+//   {coords: [-38.32313, 141.58229], content: "PFP Gate"},
+//   {coords: [-38.322439, 141.588661], content: "A2C"},
+//   {coords: [-38.34998, 141.61492], content: "Portland Wharf"},
+//   {coords: [-38.110586, 141.620118], content: "Portland Pine Products"},
+//   {coords: [-37.8414, 140.8048], content: "OFO Jubilee"},
+//   {coords: [-37.8052, 140.7738], content: "NF McDonnell"},
+//   {coords: [-38.31200, 143.65005], content: "AKD Irrawarra"},
+//   {coords: [-38.35653, 141.60905], content: "C3"},
+//   {coords: [-37.856286, 140.837906], content: "Roundwood Solutions"},
+// ];
 
-// iterate through marker array and add markers to map
-for (var i=0; i < markers.length; i++){
-  var marker = L.marker(markers[i].coords, {icon: myIcon}).addTo(map).bindPopup(markers[i].content);
-} 
+// // iterate through marker array and add markers to map
+// for (var i=0; i < markers.length; i++){
+//   var marker = L.marker(markers[i].coords, {icon: myIcon}).addTo(map).bindPopup(markers[i].content);
+// } 
 
 // add geojson haulage route layer to map
 $.getJSON('https://raw.githubusercontent.com/Ecora-Forestry/Proj-routing/new-test/THR_2021.geojson', function(data){
@@ -187,6 +187,26 @@ $.getJSON('https://raw.githubusercontent.com/Ecora-Forestry/Proj-routing/new-tes
         fillColor: 'black',
         weight: 5
       };
+    }
+  }).addTo(map);
+})
+// add geojson facilities layer to map
+$.getJSON('https://raw.githubusercontent.com/Ecora-Forestry/Proj-routing/new-test/facilities_2022.geojson', function(data){
+  L.geoJSON(data, {
+    pointToLayer: function(feature, latlng) {
+      var fcLIcon = L.AwesomeMarkers.icon({
+        icon: 'square',
+        markerColor: 'black',
+        iconColor: 'white',
+        prefix: 'fa'
+      });
+      return L.marker(latlng, {icon: fcLIcon});
+    },
+    onEachFeature: function(feature, layer) {
+      // Check if feature has a property named 'name'
+      if (feature.properties && feature.properties.Name) {
+        layer.bindPopup('CPT: ' + feature.properties.Name);
+      }
     }
   }).addTo(map);
 })
